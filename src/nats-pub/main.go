@@ -105,18 +105,8 @@ func handleRequests() {
 
 func main() {
     if _, err := parser.Parse(); err != nil {
-        switch flagsErr := err.(type) {
-        case flags.ErrorType:
-            if flagsErr == flags.ErrHelp {
-                os.Exit(0)
-			}
-			os.Exit(1)
-		default:
-			os.Exit(1)
-		}
+        os.Exit(1)
     }
-
-    logger.Infof("log file path: %s\n", opts.LogPath)
 
     logfile, _ := os.OpenFile(opts.LogPath, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0644)
     defer logfile.Close()
