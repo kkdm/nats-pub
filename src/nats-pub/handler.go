@@ -10,7 +10,7 @@ import (
 	nats "github.com/nats-io/nats.go"
 )
 
-func publish(w http.ResponseWriter, r *http.Request) {
+func publishHandler(w http.ResponseWriter, r *http.Request) {
     var item Item
 
     reqBody, _ := ioutil.ReadAll(r.Body)

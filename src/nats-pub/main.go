@@ -12,13 +12,13 @@ import (
 var opts Opts
 var parser = flags.NewParser(&opts, flags.Default)
 
-func handleRequests() {
-    myRouter := mux.NewRouter().StrictSlash(true)
-    myRouter.HandleFunc("/publish", publish).
+func getRouter() *mux.Router {
+    router := mux.NewRouter().StrictSlash(true)
+    router.HandleFunc("/publish", publishHandler).
         Methods("POST").
         Headers("Content-Type", "application/json")
-    logger.Infof("starting server: :8080")
-    logger.Fatal(http.ListenAndServe(":8080", myRouter))
+
+    return router
 }
 
 func main() {
@@ -35,5 +35,7 @@ func main() {
     logger.Infof("server params: server: %s, cluster: %s, log-path: %s, verbose: %t",
         opts.NatsServer, opts.Cluster, opts.LogPath, opts.Verbose)
 
-    handleRequests()
+    router := getRouter()
+    logger.Infof("starting server: :8080")
+    logger.Fatal(http.ListenAndServe(":8080", router))
 }

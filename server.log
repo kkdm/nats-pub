@@ -1,0 +1,6 @@
+INFO : 2020/11/23 22:56:44.022518 main.go:35: server params: server: nats://nats.kdm.home:4222, cluster: mycluster, log-path: ./server.log, verbose: false
+INFO : 2020/11/23 22:56:44.022687 main.go:39: starting server: :8080
+INFO : 2020/11/23 22:56:53.590357 main.go:35: server params: server: nats://nats.kdm.home:4222, cluster: mycluster, log-path: ./server.log, verbose: true
+INFO : 2020/11/23 22:56:53.590610 main.go:39: starting server: :8080
+INFO : 2020/11/23 22:57:08.952699 handler.go:58: published: [test]: '987654321'
+ERROR: 2020/11/23 22:57:22.563552 handler.go:47: publish failed: stan: invalid publish request
