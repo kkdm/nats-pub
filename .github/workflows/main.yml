@@ -14,6 +14,12 @@ jobs:
     
     steps:
       - uses: actions/checkout@v2
+        
+      - name: test
+        run: git tag
+
+      - name: test2
+        run: git tag -n1
 
       - name: Get version
         run: cat Makefile | grep '^VERSION' >> $GITHUB_ENV
