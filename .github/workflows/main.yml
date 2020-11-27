@@ -1,0 +1,27 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. 
+on:
+
+  push:
+    branches: [ main ]
+  pull_request:
+    types:
+    - opened
+    - synchronize
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    
+    runs-on: ubuntu-latest
+    
+    steps:
+
+      - uses: actions/checkout@v2
+
+      - name: Run test
+        run: echo {{ github.base_ref }}
