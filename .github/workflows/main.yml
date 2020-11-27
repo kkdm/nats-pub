@@ -22,7 +22,7 @@ jobs:
         run: cat Makefile | grep '^VERSION' >> $GITHUB_ENV
 
       - name: Get current version
-        run: echo "LATEST=`git tag -n1`" >> $GITHUB_ENV
+        run: echo "LATEST=`git tag -n1 | egrep -o '^v[0-9]\.[0-9]\.[0-9]'`" >> $GITHUB_ENV
         
       - name: Exit if version is not higher than current one
         if: ${{ env.VERSION }} == ${{ env.LATEST }}
