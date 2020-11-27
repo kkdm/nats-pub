@@ -19,7 +19,7 @@ jobs:
         run: make test
 
       - name: Build
-        run: make init
+        run: make build
 
       - name: Get version
         run: cat Makefile | grep '^VERSION' >> $GITHUB_ENV
