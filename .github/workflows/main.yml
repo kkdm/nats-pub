@@ -26,7 +26,7 @@ jobs:
         
       - name: Exit if version is not higher than current one
         if: ${{ env.VERSION }} == ${{ env.LATEST }}
-        run: exit
+        run: exit 1
 
       - name: Get version
         run: cat Makefile | grep '^VERSION' >> $GITHUB_ENV
