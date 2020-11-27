@@ -16,15 +16,12 @@ jobs:
       - uses: actions/checkout@v2
         
       - name: test
-        run: git tag
-
-      - name: test2
-        run: git tag -n1
+        run: echo ${{ github.event.release.tag_name }}
 
       - name: Get version
         run: cat Makefile | grep '^VERSION' >> $GITHUB_ENV
 
-      - name: Get version
+      - name: Get version number
         run: echo "VERNUM=`grep '^VERSION' Makefile | egrep -o '[0-9]' | tr -d '\n'`" >> $GITHUB_ENV
 
       - name: Get current version
