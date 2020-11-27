@@ -21,14 +21,11 @@ jobs:
       - name: Get version
         run: cat Makefile | grep '^VERSION' >> $GITHUB_ENV
 
-      - name: Get version number
-        run: echo "VERNUM=`grep '^VERSION' Makefile | egrep -o '[0-9]' | tr -d '\n'`" >> $GITHUB_ENV
-
       - name: Get current version
-        run: echo "CUR_VERNUM=`git tag -n1 | egrep -o '[0-9]' | tr -d '\n'`" >> $GITHUB_ENV
+        run: echo "LATEST=`git tag -n1`" >> $GITHUB_ENV
         
       - name: Exit if version is not higher than current one
-        if: ${{ env.VERSION }} =< ${{ env.CUR_VERNUM }}
+        if: ${{ env.VERSION }} == ${{ env.LATEST }}
         run: exit
 
       - name: Get version
