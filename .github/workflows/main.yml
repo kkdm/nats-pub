@@ -15,14 +15,17 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Get version
+        run: cat Makefile | grep '^VERSION' >> $GITHUB_ENV
+
+      - name: Check version
+        run: git tag | grep ${{ env.VERSION }} && echo 'version must be higher than current version' && exit 1
+
       - name: Test
         run: make test
 
       - name: Build
         run: make build
-
-      - name: Get version
-        run: cat Makefile | grep '^VERSION' >> $GITHUB_ENV
 
       - name: Create Release
         id: create_release
