@@ -7,7 +7,7 @@ After=network.target
 [Service]
 Type=simple
 User=appuser
-EnvironmentFile=/usr/local/nats-pub/app.conf
+EnvironmentFile=/usr/local/natspub/app.conf
 ExecStart=/usr/local/bin/nats-pub \
     --server ${NATS_SERVER} \
     --cluster ${CLUSTER_NAME \
