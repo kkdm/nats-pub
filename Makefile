@@ -1,7 +1,7 @@
 VERSION=v0.1.0
 
 build:
-	go build -o ./bin/natspub  -ldflags="-s -w -X main.version=$(VERSION)" -trimpath ./src/natspub
+	go build -o ./bin/nats-pub  -ldflags="-s -w -X main.version=$(VERSION)" -trimpath ./src/nats-pub
 
 test:
-	go test ./src/natspub
+	go test ./src/nats-pub
