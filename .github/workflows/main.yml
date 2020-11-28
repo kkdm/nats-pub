@@ -54,3 +54,27 @@ jobs:
           asset_path: ./bin/natspub
           asset_name: natspub
           asset_content_type: application/octet-stream
+
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@master
+        env:
+          SLACK_CHANNEL: git-notify
+          SLACK_ICON: https://drive.google.com/file/d/1S8oCfEHwrfBlGWhh3mxrE58kDUQpn-Gb/view?usp=sharing
+          SLACK_MESSAGE: "https://github.com/${{github.repository}}/releases/download/${{ env.VERSION }}/slack-bot"
+          SLACK_TITLE: ${{github.repository}} Release ${{ env.VERSION }}
+          SLACK_USERNAME: machi
+          SLACK_WEBHOOK: ${{ secrets.MACHI_INCOMING_WEBHOOK }}
+          MSG_MINIMAL: true
+
+      - name: run if fail_step failed
+        if: failure()
+        uses: rtCamp/action-slack-notify@master
+        env:
+          SLACK_CHANNEL: git-notify
+          SLACK_ICON: https://drive.google.com/file/d/1S8oCfEHwrfBlGWhh3mxrE58kDUQpn-Gb/view?usp=sharing
+          SLACK_MESSAGE: "https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}"
+          SLACK_TITLE: ${{github.repository}} CI failed...
+          SLACK_USERNAME: machi
+          SLACK_WEBHOOK: ${{ secrets.MACHI_INCOMING_WEBHOOK }}
+          MSG_MINIMAL: true
+          asset_content_type: application/octet-stream
